@@ -1,0 +1,17 @@
+
+
+<h1>Pagina de listar</h1>
+
+<hr>
+
+<table>
+<?php
+    foreach ($select as $row) {
+    echo "<tr>
+        <td>{$row['id']}</td>
+        <td>{$row['nome']}</td>
+        <td>{$row['quantidade']}</td>
+    </tr>";
+    }
+?>
+</table>
