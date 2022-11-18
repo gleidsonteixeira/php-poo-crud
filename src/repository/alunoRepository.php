@@ -20,33 +20,19 @@ function buscarUmAluno($id): iterable
     return $aluno->fetch(PDO::FETCH_ASSOC);
 }
 
-function novoAluno(): void
+function novoAluno(string $nome, string $cidade, string $matricula): void
 {
-    if(false === empty($_POST)){
-        $nome = $_POST['nome'];
-        $matricula = $_POST['matricula'];
-        $cidade = $_POST['cidade'];
-
-        $sql = "INSERT INTO tb_alunos (nome, matricula, cidade) VALUES (?,?,?)";
-        $query = abrirConexao()->prepare($sql);
-        $query->execute([$nome, $matricula, $cidade]);
-        header('location: /listar');
-    }
+    $sql = "INSERT INTO tb_alunos (nome, matricula, cidade) VALUES (?,?,?)";
+    $query = abrirConexao()->prepare($sql);
+    $query->execute([$nome, $matricula, $cidade]);
 }
 
-function atualizarAluno(): void
+function atualizarAluno(string $nome, string $cidade, string $matricula, string $id): void
 {
-    if(false === empty($_POST)){
-        $id = $_POST['id'];
-        $nome = $_POST['nome'];
-        $matricula = $_POST['matricula'];
-        $cidade = $_POST['cidade'];
 
-        $sql = "UPDATE tb_alunos SET nome=?, matricula=?, cidade=? WHERE id=?";
-        $query = abrirConexao()->prepare($sql);
-        $query->execute([$nome, $matricula, $cidade,$id]);
-        header('location: /listar');
-    }
+    $sql = "UPDATE tb_alunos SET nome=?, matricula=?, cidade=? WHERE id=?";
+    $query = abrirConexao()->prepare($sql);
+    $query->execute([$nome, $matricula, $cidade,$id]);
 }
 
 function excluirAluno(string $id): void
